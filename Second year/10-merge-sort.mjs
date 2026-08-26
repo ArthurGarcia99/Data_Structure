@@ -7,6 +7,7 @@ function mergeSort(vetor){
     let vetDir = vetor.slice(meio);
 
     // chamadas recursivas
+
     vetEsq = mergeSort(vetEsq);
     vetDir = mergeSort(vetDir);
 
@@ -14,16 +15,29 @@ function mergeSort(vetor){
     let posEsq = 0, posDir = 0, vetRes = []
 
     while(posEsq < vetEsq.length && posDir < vetDir.length){
-        if(vetEsq(posEsq) < vetDir(posDir)){
-            vetRes.push(vetEsq(posEsq));
+        if(vetEsq[posEsq] < vetDir[posDir]){
+            vetRes.push(vetEsq[posEsq]);
             posEsq++
         }else{
-            vetRes.push(vetDir(posDir))
+            vetRes.push(vetDir[posDir])
             posDir++
         }
     }
 
+    let sobra
 
-}
+    if(posEsq < posDir){
+        sobra = vetEsq.slice(posEsq)
+    }else{
+        sobra = vetDir.slice(posDir)
+    }
+
+    return [...vetRes, ...sobra]
+
+} 
 
 let nums = [77,44,22,33,99,55,88,0,66,11]
+
+let numOrd = mergeSort(nums)
+
+console.log({numOrd})
